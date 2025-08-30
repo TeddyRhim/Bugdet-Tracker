@@ -13,6 +13,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
 use ApiPlatform\Metadata\ApiProperty;
 use App\Controller\CategoryBalanceController;
 use App\Controller\CategoryTotalController;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 
 
@@ -21,7 +23,6 @@ use App\Controller\CategoryTotalController;
 
 #[ApiResource(
     operations: [
-        new Get(),
         new Post(
             security: "is_granted('ROLE_ADMIN')",
         ),
@@ -38,9 +39,11 @@ use App\Controller\CategoryTotalController;
             security: "is_granted('ROLE_ADMIN')",
             securityMessage: "Seuls les admins peuvent voir le total."
         ),
+        new Get(),
     ],
     security: "is_granted('ROLE_USER')"
 )]
+
 
 class Category
 {
@@ -49,7 +52,7 @@ class Category
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(length: 100, unique: true)]
     private ?string $name = null;
 
     /**
@@ -77,7 +80,7 @@ class Category
 
     public function setName(?string $name): static
     {
-        $this->name = $name;
+        $this->name = $name ? ucfirst(strtolower($name)) : null;
 
         return $this;
     }

@@ -48,7 +48,7 @@ class ApiTokenAuthenticator extends AbstractAuthenticator
 
     public function onAuthenticationSuccess(Request $request, \Symfony\Component\Security\Core\Authentication\Token\TokenInterface $token, string $firewallName): ?Response
     {
-        return null; // continue la requête
+        return null;
     }
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response

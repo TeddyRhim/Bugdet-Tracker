@@ -136,4 +136,21 @@ class Transaction
 
         return $this;
     }
+
+    #[ORM\PrePersist]
+    public function setCreatedAtValue(): void
+    {
+        if ($this->createdAt === null) {
+            $this->createdAt = new \DateTimeImmutable();
+        }
+    }
+
+    #[ORM\PrePersist]
+    #[ORM\PreUpdate]
+    public function validateAmount(): void
+    {
+        if ($this->amount <= 0) {
+            throw new \InvalidArgumentException("Le montant d'une transaction doit être supérieur à 0.");
+        }
+    }
 }
