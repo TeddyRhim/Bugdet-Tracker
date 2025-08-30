@@ -70,19 +70,19 @@ Elle expose des endpoints sécurisés pour suivre les finances personnelles et i
 ------------------------------------------------------------
 📌 Endpoints principaux
 ------------------------------------------------------------
-GET  /api/users/{id}                    -> Récupère un utilisateur (ROLE_USER)
-GET  /api/users/{id}/balance            -> Récupère le solde d’un utilisateur (Propriétaire/Admin)
-POST /api/users                         -> Créer un utilisateur (Propriétaire/Admin)
+- GET  /api/users/{id}                    -> Récupère un utilisateur (ROLE_USER)
+- GET  /api/users/{id}/balance            -> Récupère le solde d’un utilisateur (Propriétaire/Admin)
+- POST /api/users                         -> Créer un utilisateur (Propriétaire/Admin)
 
-GET  /api/transactions/{id}             -> Récupère une transaction par un id (ROLE_USER)
-GET  /api/transactions/recent           -> 10 dernières transactions (ROLE_USER)
-GET  /api/transactions/high             -> Transactions > 1000€ + alerte (ROLE_USER)
-POST /api/transactions                  -> Créer une transaction (Propriétaire/Admin)
+- GET  /api/transactions/{id}             -> Récupère une transaction par un id (ROLE_USER)
+- GET  /api/transactions/recent           -> 10 dernières transactions (ROLE_USER)
+- GET  /api/transactions/high             -> Transactions > 1000€ + alerte (ROLE_USER)
+- POST /api/transactions                  -> Créer une transaction (Propriétaire/Admin)
 
-GET  /api/categories/{id}               -> Récupère une catégorie par un id (ROLE_USER)
-GET  /api/categories/{id}/total         -> Résumé des transactions d’une catégorie (ROLE_USER)
-GET  /api/categories/{id}/balance       -> Résumé des transactions (ROLE_USER)
-POST /api/categories                    -> Créer une categorie (Propriétaire/Admin)
+- GET  /api/categories/{id}               -> Récupère une catégorie par un id (ROLE_USER)
+- GET  /api/categories/{id}/total         -> Résumé des transactions d’une catégorie (ROLE_USER)
+- GET  /api/categories/{id}/balance       -> Résumé des transactions (ROLE_USER)
+- POST /api/categories                    -> Créer une categorie (Propriétaire/Admin)
 
 ------------------------------------------------------------
 🛠️ Développement
