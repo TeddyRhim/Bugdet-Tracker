@@ -8,7 +8,7 @@ services:
       - "9000:9000"
     environment:
       APP_ENV: dev
-      DATABASE_URL: "mysql://root:budgettracker@127.0.0.1:3306/budget_tracker?serverVersion=8.0"
+      DATABASE_URL: "mysql://root:budgettracker@db:3306/budget_tracker?serverVersion=8.0"
     depends_on:
       - db
 
@@ -32,7 +32,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: budgettracker
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - db_data:/var/lib/mysql
 
