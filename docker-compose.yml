@@ -1,0 +1,49 @@
+version: '3.8'
+
+services:
+  php:
+    build: .
+    container_name: symfony_php
+    volumes:
+      - .:/var/www/html
+    ports:
+      - "9000:9000"
+    environment:
+      APP_ENV: dev
+      DATABASE_URL: "mysql://root:@127.0.0.1:3306/budget_tracker?serverVersion=8.0"
+    depends_on:
+      - db
+
+  nginx:
+    image: nginx:stable
+    container_name: symfony_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html:cached
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    depends_on:
+      - php
+
+  db:
+    image: mysql:8.0
+    container_name: symfony_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: budget_tracker
+      MYSQL_USER: symfony
+      MYSQL_PASSWORD: symfony
+    ports:
+      - "3306:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+  adminer:
+    image: adminer
+    container_name: symfony_adminer
+    restart: always
+    ports:
+      - 8081:8080
+
+volumes:
+  db_data:
