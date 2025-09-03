@@ -16,8 +16,9 @@ RUN apt-get update && apt-get install -y \
     zip \
     curl \
     default-mysql-client \
-    && docker-php-ext-install intl mbstring pdo_mysql ctype xml json tokenizer zip opcache \
-    && docker-php-ext-enable pdo_mysql intl mbstring opcache
+    && docker-php-ext-install intl mbstring pdo_mysql zip opcache \
+    && docker-php-ext-enable pdo_mysql intl mbstring opcache \
+    && rm -rf /var/lib/apt/lists/*
 
 # Installer Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
