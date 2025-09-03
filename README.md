@@ -116,5 +116,6 @@ test postman lors d'un POST d'une transactions
 - [x] Lifecycle Callbacks (timestamps, validation, hash password)
 - [x] Event Subscriber (alerte transaction > 1000)
 - [x] Tests automatisés
+- [x] Création et setup d'une VM pour Docker
 - [ ] Dockerisation
 - [ ] Déploiement
