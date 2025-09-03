@@ -8,7 +8,7 @@ services:
       - "9000:9000"
     environment:
       APP_ENV: dev
-      DATABASE_URL: "mysql://root:@127.0.0.1:3306/budget_tracker?serverVersion=8.0"
+      DATABASE_URL: "mysql://root:budgettracker@127.0.0.1:3306/budget_tracker?serverVersion=8.0"
     depends_on:
       - db
 
@@ -27,10 +27,10 @@ services:
     image: mysql:8.0
     container_name: symfony_db
     environment:
-      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ROOT_PASSWORD: budgettracker
       MYSQL_DATABASE: budget_tracker
       MYSQL_USER: root
-      MYSQL_PASSWORD: ''
+      MYSQL_PASSWORD: budgettracker
     ports:
       - "3306:3306"
     volumes:
