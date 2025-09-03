@@ -27,10 +27,10 @@ services:
     image: mysql:8.0
     container_name: symfony_db
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ''
       MYSQL_DATABASE: budget_tracker
-      MYSQL_USER: symfony
-      MYSQL_PASSWORD: symfony
+      MYSQL_USER: root
+      MYSQL_PASSWORD: ''
     ports:
       - "3306:3306"
     volumes:
