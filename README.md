@@ -117,5 +117,5 @@ test postman lors d'un POST d'une transactions
 - [x] Event Subscriber (alerte transaction > 1000)
 - [x] Tests automatisés
 - [x] Création et setup d'une VM pour Docker
-- [ ] Dockerisation
+- [x] Dockerisation
 - [ ] Déploiement
