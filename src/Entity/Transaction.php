@@ -10,6 +10,8 @@ use ApiPlatform\Metadata\Post;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\TransactionRecentController;
 use App\Controller\TransactionHighController;
+use App\DTO\TransactionInput;
+use App\State\TransactionProcessor;
 
 
 
@@ -22,17 +24,27 @@ use App\Controller\TransactionHighController;
             uriTemplate: '/transactions/recent',
             controller: TransactionRecentController::class,
             name: 'transaction_recent',
-            read: false
+            read: false,
+            // security: "is_granted('TRANSACTION_VIEW', object)"
         ),
         new Get(
             uriTemplate: '/transactions/high',
             controller: TransactionHighController::class,
             name: 'transaction_high',
-            read: false
+            read: false,
+            // security: "is_granted('TRANSACTION_VIEW', object)"
         ),
         new Post(
+            input: TransactionInput::class,
+            processor: TransactionProcessor::class,
             security: "is_granted('ROLE_ADMIN')",
-            securityMessage: "Seuls les admins peuvent créer une transaction."
+            securityMessage: "Seuls les admins peuvent créer une transaction.",
+            normalizationContext: [
+                'format' => 'json'
+            ],
+            denormalizationContext: [
+                'format' => 'json'
+            ]
         ),
         new Get()
     ],
@@ -137,7 +149,6 @@ class Transaction
         return $this;
     }
 
-    #[ORM\PrePersist]
     public function setCreatedAtValue(): void
     {
         if ($this->createdAt === null) {
@@ -145,8 +156,6 @@ class Transaction
         }
     }
 
-    #[ORM\PrePersist]
-    #[ORM\PreUpdate]
     public function validateAmount(): void
     {
         if ($this->amount <= 0) {

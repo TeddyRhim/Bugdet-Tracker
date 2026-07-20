@@ -25,7 +25,7 @@
         "symfony/framework-bundle": "6.4.*",
         "symfony/google-mailer": "6.4.*",
         "symfony/mailer": "6.4.*",
-        "symfony/maker-bundle": "^1.64",
+        "symfony/maker-bundle": "^1.67",
         "symfony/property-access": "6.4.*",
         "symfony/property-info": "6.4.*",
         "symfony/runtime": "6.4.*",

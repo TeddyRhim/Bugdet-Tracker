@@ -13,6 +13,8 @@ use ApiPlatform\Metadata\Post;
 use Symfony\Component\Serializer\Annotation\Groups;
 use App\Controller\UserBalanceController;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use App\DTO\UserInput;
+use App\State\UserProcessor;
 
 
 
@@ -23,8 +25,16 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
     operations: [
         new Get(),
         new Post(
+            input: UserInput::class,
+            processor: UserProcessor::class,
             security: "is_granted('ROLE_ADMIN')",
-            securityMessage: "Seuls les admins peuvent créer un utilisateur."
+            securityMessage: "Seuls les admins peuvent créer un utilisateur.",
+            normalizationContext: [
+                'format' => 'json'
+            ],
+            denormalizationContext: [
+                'format' => 'json'
+            ]
         ),
         new Get(
             uriTemplate: '/users/{id}/balance',
@@ -50,11 +60,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $email = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['user:read', 'user:write'])]
+    #[Groups(['user:write'])]
     private ?array $roles = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['user:read', 'user:write'])]
+    #[Groups(['user:write'])]
     private ?string $password = null;
 
     private ?string $plainPassword = null;
