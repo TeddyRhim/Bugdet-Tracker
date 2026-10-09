@@ -4,7 +4,7 @@ Une application Symfony 6 + API Platform permettant de gérer des utilisateurs, 
 Elle expose des endpoints sécurisés pour suivre les finances personnelles et inclut des fonctionnalités avancées comme les alertes automatiques et des contrôles de sécurité stricts.
 
 ------------------------------------------------------------
-🚀 Fonctionnalités
+Fonctionnalités
 ------------------------------------------------------------
 - Gestion des utilisateurs
   - Création de compte (admin uniquement)
@@ -38,7 +38,7 @@ Elle expose des endpoints sécurisés pour suivre les finances personnelles et i
   - Simple Swagger généré par APIPlatform. (à corriger/modifier)
 
 ------------------------------------------------------------
-📦 Installation
+Installation
 ------------------------------------------------------------
 1. Cloner le projet :
    git clone https://github.com/ton-compte/budget-tracker.git
@@ -61,14 +61,14 @@ Elle expose des endpoints sécurisés pour suivre les finances personnelles et i
    -> API sur http://localhost:8000/api
 
 ------------------------------------------------------------
-🔑 Authentification
+Authentification
 ------------------------------------------------------------
 - Utilisation d’un API Token
 - Header HTTP requis :
   Authorization: Bearer {API_TOKEN}
 
 ------------------------------------------------------------
-📌 Endpoints principaux
+Endpoints principaux
 ------------------------------------------------------------
 - GET  /api/users/{id}                    -> Récupère un utilisateur (ROLE_USER)
 - GET  /api/users/{id}/balance            -> Récupère le solde d’un utilisateur (Propriétaire/Admin)
@@ -85,7 +85,7 @@ Elle expose des endpoints sécurisés pour suivre les finances personnelles et i
 - POST /api/categories                    -> Créer une categorie (Propriétaire/Admin)
 
 ------------------------------------------------------------
-🛠️ Développement
+Développement
 ------------------------------------------------------------
 Lifecycle Callbacks :
 - Transaction::setCreatedAtValue() -> initialise createdAt
@@ -96,7 +96,7 @@ Event Subscribers :
 - TransactionHighSubscriber -> postPersist, log + email si montant > 1000€
 
 ------------------------------------------------------------
-📧 Alertes par email
+Alertes par email
 ------------------------------------------------------------
 Configurer MAILER_DSN dans .env.local :
 MAILER_DSN=gmail://USERNAME:PASSWORD@default (si gmail sinon utilisez : )
@@ -107,7 +107,7 @@ ou
 test postman lors d'un POST d'une transactions
 
 ------------------------------------------------------------
-✅ TODO (Roadmap)
+TODO (Roadmap)
 ------------------------------------------------------------
 - [x] CRUD Users
 - [x] CRUD Transactions
